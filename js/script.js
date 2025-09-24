@@ -1,11 +1,4 @@
 let habitos = [];
-//habitos.push(["Ir al Gym", true, [new Date()]]);
-//habitos.push(["Ir a Correr", true, [new Date()]]);
-//habitos.push(["Programar", true, [new Date()]]);
-//habitos.push(["Comer saludable", true, [new Date()]]);
-
-//console.log(habitos[3]);
-
 function menu() {
   let opcion = prompt(
     "***********************************\n" +
@@ -27,7 +20,9 @@ function agregarHabito(habitos, nombre) {
 function listarHabitos(habitos) {
   let contador = 0;
   for (const habito of habitos) {
-    console.log(`Numero ${contador}: ${habito[0]} - Realizado: ${habito[1]}`);
+    console.log(
+      `Numero ${contador}: ${habito[0]} - Realizado: ${habito[1]} - Registros: ${habito[2]}`
+    );
     contador++;
   }
 }
@@ -38,8 +33,11 @@ function eliminarHabito(habitos) {
     10
   );
   if (!isNaN(indice) && indice >= 0 && indice < habitos.length) {
-    habitos.splice(indice, 1);
-    alert("Hábito eliminado correctamente");
+    let respuesta = confirm("¿Estás seguro de eliminar este hábito?");
+    if (respuesta) {
+      habitos.splice(indice, 1);
+      alert("Hábito eliminado correctamente");
+    }
   } else {
     alert("Número incorrecto");
   }
@@ -61,7 +59,7 @@ function modificarHabito(habitos) {
   }
 }
 function registrarHabito(habitos) {
-  listarHabitos();
+  listarHabitos(habitos);
   let indice = parseInt(
     prompt("Ingrese el habito sobre el cual desea registrar avances:"),
     10
@@ -95,11 +93,9 @@ while ((opcion = menu()) !== "6") {
     case "5":
       listarHabitos(habitos);
       break;
-    case "6":
-      break;
     default:
       console.log("Opción inválida");
       break;
   }
-  console.log(opcion);
 }
+alert("¡Excelente avance!, ¡nos vemos pronto!");
