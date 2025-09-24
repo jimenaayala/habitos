@@ -13,11 +13,13 @@ function menu() {
   );
   return opcion;
 }
-function agregarHabito(habitos, nombre) {
+
+const agregarHabito = (habitos, nombre) => {
   habitos.push([nombre, false, []]);
-  console.log("Su habito fue guardado con exito");
-}
-function listarHabitos(habitos) {
+  console.log("Su hábito fue guardado con éxito");
+};
+
+const listarHabitos = (habitos) => {
   let contador = 0;
   for (const habito of habitos) {
     console.log(
@@ -25,53 +27,54 @@ function listarHabitos(habitos) {
     );
     contador++;
   }
-}
-function eliminarHabito(habitos) {
-  listarHabitos(habitos);
-  let indice = parseInt(
-    prompt("Ingrese el número del hábito que desea eliminar:"),
-    10
-  );
+};
+
+const obtenerIndiceOk = (habitos, mensaje) => {
+  let indice = parseInt(prompt(mensaje), 10);
   if (!isNaN(indice) && indice >= 0 && indice < habitos.length) {
-    let respuesta = confirm("¿Estás seguro de eliminar este hábito?");
-    if (respuesta) {
-      habitos.splice(indice, 1);
-      alert("Hábito eliminado correctamente");
-    }
+    return indice;
   } else {
     alert("Número incorrecto");
+    return null;
+  }
+};
+
+function eliminarHabito(habitos) {
+  listarHabitos(habitos);
+  const indice = obtenerIndiceOk(
+    habitos,
+    "Ingrese el número del hábito que desea eliminar:"
+  );
+  if (indice !== null && confirm("¿Estás seguro de eliminar este hábito?")) {
+    habitos.splice(indice, 1);
+    alert("Hábito eliminado correctamente");
   }
 }
+
 function modificarHabito(habitos) {
-  console.log("entro a modificar");
   listarHabitos(habitos);
-  let indice = parseInt(
-    prompt("Ingrese el número del hábito que desea modificar:"),
-    10
+  const indice = obtenerIndiceOk(
+    habitos,
+    "Ingrese el número del hábito que desea modificar:"
   );
-  if (!isNaN(indice) && indice >= 0 && indice < habitos.length) {
+  if (indice !== null) {
     habitos[indice][0] = prompt(
       "Nombre actual: " + habitos[indice][0] + "\n Ingrese nuevo nombre: "
     );
     alert("Hábito modificado correctamente");
-  } else {
-    alert("Número incorrecto");
   }
 }
+
 function registrarHabito(habitos) {
   listarHabitos(habitos);
-  let indice = parseInt(
-    prompt("Ingrese el habito sobre el cual desea registrar avances:"),
-    10
+  const indice = obtenerIndiceOk(
+    habitos,
+    "Ingrese el habito sobre el cual desea registrar avances:"
   );
-  if (!isNaN(indice) && indice >= 0 && indice < habitos.length) {
+  if (indice !== null) {
     habitos[indice][1] = true;
     habitos[indice][2].push(new Date());
-    alert(
-      "Felicitaciones! Hábito registrado correctamente, estas mas cerca de tu meta!"
-    );
-  } else {
-    alert("Número incorrecto");
+    alert("Felicitaciones! registramos tu avance, estas mas cerca de tu meta!");
   }
 }
 
