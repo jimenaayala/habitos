@@ -1,18 +1,4 @@
 let habitos = [];
-function menu() {
-  let opcion = prompt(
-    "***********************************\n" +
-      "Seleccione la opción deseada:\n" +
-      "1. Agregar un hábito\n" +
-      "2. Eliminar un hábito\n" +
-      "3. Modificar un hábito\n" +
-      "4. Registrar que un habito fue realizado\n" +
-      "5. Listar tus habitos\n" +
-      "6. Salir\n" +
-      "**********************************"
-  );
-  return opcion;
-}
 
 const agregarHabito = (habitos, nombre) => {
   habitos.push([nombre, false, []]);
@@ -77,9 +63,19 @@ function registrarHabito(habitos) {
     alert("Felicitaciones! registramos tu avance, estas mas cerca de tu meta!");
   }
 }
-
-let opcion;
-while ((opcion = menu()) !== "6") {
+continuar = true;
+while (continuar) {
+  let opcion = prompt(
+    "***********************************\n" +
+      "Seleccione la opción deseada:\n" +
+      "1. Agregar un hábito\n" +
+      "2. Eliminar un hábito\n" +
+      "3. Modificar un hábito\n" +
+      "4. Registrar que un habito fue realizado\n" +
+      "5. Listar tus habitos\n" +
+      "6. Salir\n" +
+      "**********************************"
+  );
   switch (opcion) {
     case "1":
       agregarHabito(habitos, prompt("Ingrese nombre del habito a agregar:"));
@@ -95,6 +91,9 @@ while ((opcion = menu()) !== "6") {
       break;
     case "5":
       listarHabitos(habitos);
+      break;
+    case "6":
+      continuar = false;
       break;
     default:
       console.log("Opción inválida");
