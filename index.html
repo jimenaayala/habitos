@@ -11,18 +11,20 @@
     <h1>¡Conquista tus hábitos y alcanza tus metas!</h1>
     <p>
       Esta aplicación te ayuda a registrar y seguir tus hábitos diarios. Podés
-      crear tus propios hábitos, editarlos o eliminarlos cuando quieras, y
-      marcar en qué fechas los cumpliste. Por ahora es una versión inicial
-      enfocada en lo básico: crear, ver y registrar hábitos por consola.
+      crear tus propios hábitos cuando quieras, y marcar en qué fechas los
+      cumpliste. Por ahora es una versión inicial enfocada en lo básico.
     </p>
+    <div id="mensaje"></div>
     <form id="nuevoHabitoForm">
+      <h1>Ingrese nuevo hábito:</h1>
       <input
         type="text"
         id="idNombreHabito"
         placeholder="Escribí el nombre del hábito que deseas agregar"
       />
-      <button type="submit" id="guardarHabito">Guardar</button>
+      <button type="submit" id="guardarHabito">Agregar</button>
     </form>
+    <h1>Traqueo de avances</h1>
     <section id="habitos-container"></section>
   </body>
 </html>
