@@ -1,95 +1,304 @@
-h1:first-of-type {
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-p {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 15px 20px;
-  border-radius: 15px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  text-align: center;
-  font-size: 1.1rem;
-  line-height: 1.6;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode";
-  padding: 0 10%; /* espacio interno */
-  background-color: #f5f5f5;
-  margin: 0; /* asegurate de que no haya margen por defecto */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
-#mensaje {
-  color: red;
-  margin-bottom: 10px;
+/* Hero Section */
+.hero {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+/* Header Section with Title and Button */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.header-section h2 {
+  font-size: 2rem;
+  color: white;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Modern Add Button */
+.btn-agregar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 2px solid white;
+  border-radius: 50px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-agregar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.btn-agregar:active {
+  transform: translateY(0);
+}
+
+.btn-agregar .icon {
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
+#mensaje {
+  color: #ff4444;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Habits Container */
 #habitos-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columnas iguales */
-  gap: 20px; /* espacio entre cards */
-  max-width: 800px;
-  margin-top: 20px auto 0;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
 }
 
-#habitos-container div {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 15px;
+#habitos-container > div {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 25px;
   text-align: center;
-  transition: transform 0.2s;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
 }
 
-#habitos-container div:hover {
-  transform: translateY(-5px);
+#habitos-container > div:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  border-color: #667eea;
 }
 
 #habitos-container h3 {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: #333;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.habitoRegistrar,
+.habitoEditar,
+.habitoEliminar {
+  padding: 10px 18px;
+  margin: 5px 3px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .habitoRegistrar {
-  padding: 5px 10px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #4caf50;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  background: linear-gradient(135deg, #4caf50, #45a049);
 }
 
 .habitoRegistrar:hover {
-  background-color: #45a049;
+  background: linear-gradient(135deg, #45a049, #3d8b40);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.habitoEditar {
+  background: linear-gradient(135deg, #2196f3, #0b7dda);
+}
+
+.habitoEditar:hover {
+  background: linear-gradient(135deg, #0b7dda, #0a6bc2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+}
+
+.habitoEliminar {
+  background: linear-gradient(135deg, #f46c36, #da3f0b);
+}
+
+.habitoEliminar:hover {
+  background: linear-gradient(135deg, #da190b, #c2180a);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
 }
 
 /* Lista de fechas */
 #habitos-container ul {
   list-style-type: none;
   padding: 0;
-  margin: 0;
-  color: #555;
+  margin: 15px 0;
+  color: #666;
+  max-height: 150px;
+  overflow-y: auto;
+  text-align: left;
 }
 
 #habitos-container li {
-  padding: 3px 0;
+  padding: 8px 12px;
+  margin: 5px 0;
+  background: #f8f9fa;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  border-left: 3px solid #667eea;
 }
 
-#habitos-container div {
+#habitos-container li:first-child {
+  font-weight: 600;
+  color: #333;
+}
+
+#habitos-container > div {
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
 #habitos-container h3 {
   word-break: break-word;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .header-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-section h2 {
+    text-align: center;
+  }
+
+  .btn-agregar {
+    justify-content: center;
+  }
+
+  #habitos-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilos para el Popup de Agregar Hábito */
+.popup-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.popup-body #nuevoHabitoForm {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+}
+
+.popup-body h1 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.popup-body #idNombreHabito {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.popup-body #idNombreHabito:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.popup-body #guardarHabito {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.popup-body #guardarHabito:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.popup-body #guardarHabito:active {
+  transform: translateY(0);
 }

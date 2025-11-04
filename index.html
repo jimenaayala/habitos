@@ -1,30 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Tracker de Hábitos</title>
+    <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css" />
+    <!-- JS -->
     <script defer src="./js/main.js"></script>
   </head>
   <body>
-    <h1>¡Conquista tus hábitos y alcanza tus metas!</h1>
-    <p>
-      Esta aplicación te ayuda a registrar y seguir tus hábitos diarios. Podés
-      crear tus propios hábitos cuando quieras, y marcar en qué fechas los
-      cumpliste. Por ahora es una versión inicial enfocada en lo básico.
-    </p>
-    <div id="mensaje"></div>
-    <form id="nuevoHabitoForm">
-      <h1>Ingrese nuevo hábito:</h1>
-      <input
-        type="text"
-        id="idNombreHabito"
-        placeholder="Escribí el nombre del hábito que deseas agregar"
-      />
-      <button type="submit" id="guardarHabito">Agregar</button>
-    </form>
-    <h1>Traqueo de avances</h1>
-    <section id="habitos-container"></section>
+    <header class="hero">
+      <h1>¡Conquista tus hábitos y alcanza tus metas!</h1>
+      <p>
+        Esta aplicación te ayuda a registrar y seguir tus hábitos diarios. Podés
+        crear tus propios hábitos cuando quieras, y marcar en qué fechas los
+        cumpliste.
+      </p>
+    </header>
+
+    <main class="container">
+      <div class="header-section">
+        <h2>Mis Hábitos</h2>
+        <button type="button" id="nuevoHabito" class="btn-agregar">
+          <span class="icon">+</span>
+          <span class="text">Nuevo Hábito</span>
+        </button>
+      </div>
+
+      <div id="mensaje"></div>
+      <section id="habitos-container"></section>
+    </main>
+    <!--SWEETALERT-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
