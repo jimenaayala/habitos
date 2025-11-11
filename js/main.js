@@ -98,7 +98,7 @@ function addToCardButton() {
   const registrarButtons = document.querySelectorAll(".habitoRegistrar");
   registrarButtons.forEach((button) => {
     button.onclick = (e) => {
-      const habitoId = e.currentTarget.dataset.id;
+      const habitoId = e.currentTarget.getAttribute("data-id");
       const habitoSeleccionado = habitos.find(
         (habito) => habito.id == habitoId
       );
@@ -111,7 +111,7 @@ function addToCardButton() {
   const editarButtons = document.querySelectorAll(".habitoEditar");
   editarButtons.forEach((button) => {
     button.onclick = (e) => {
-      const habitoId = e.currentTarget.dataset.id;
+      const habitoId = e.currentTarget.getAttribute("data-id");
       editarHabito(habitoId);
     };
   });
@@ -120,7 +120,7 @@ function addToCardButton() {
   const eliminarButtons = document.querySelectorAll(".habitoEliminar");
   eliminarButtons.forEach((button) => {
     button.onclick = (e) => {
-      const habitoId = e.currentTarget.dataset.id;
+      const habitoId = e.currentTarget.getAttribute("data-id");
       Swal.fire({
         title: "Eliminar hábito",
         text: "¿Estás seguro de eliminar este hábito?",
