@@ -169,6 +169,22 @@ body {
   box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
 }
 
+.habitoEditarFecha {
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-left: 8px;
+}
+
+.habitoEditarFecha:hover {
+  background: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 4px rgba(210, 219, 226, 0.4);
+  border: none;
+  outline: none;
+  margin-left: 8px;
+}
+
 .habitoEliminar {
   background: linear-gradient(135deg, #f46c36, #da3f0b);
 }
@@ -178,7 +194,19 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
 }
+.habitoEliminarFecha {
+  background: transparent;
+  border: none;
+  outline: none;
+}
 
+.habitoEliminarFecha:hover {
+  background: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(230, 230, 230, 0.4);
+  border: none;
+  outline: none;
+}
 /* Lista de fechas */
 #habitos-container ul {
   list-style-type: none;

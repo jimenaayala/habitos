@@ -18,7 +18,6 @@ renderHabitos(habitos);
 function marcarComoRealizado(habito) {
   const hoy = new Date();
   habito.fechasRealizadas.push(hoy);
-  console.log(habito);
   localStorage.setItem("cardHabitos", JSON.stringify(habitos));
 }
 
@@ -73,7 +72,10 @@ function renderHabitos(habitosArray) {
     if (habito.fechasRealizadas.length > 0) {
       habito.fechasRealizadas.forEach((fecha) => {
         const item = document.createElement("li");
-        item.textContent = new Date(fecha).toLocaleDateString();
+        item.innerHTML = `${new Date(fecha).toLocaleString("es-AR", {
+          dateStyle: "short",
+          timeStyle: "short",
+        })} <button class="habitoEditarFecha">✏️</button><button class="habitoEliminarFecha">🗑️</button>`;
         listaFechas.appendChild(item);
       });
     } else {
