@@ -1,81 +1,29 @@
+// ====== DOM & EVENTOS ======
+
 let habitosContainer = document.getElementById("habitos-container");
+let agregarHabitoBtn = document.getElementById("nuevoHabito");
 
-let habitos = [];
-let cartStorage = localStorage.getItem("cardHabitos");
-if (cartStorage) {
-  cartStorage = JSON.parse(cartStorage);
-  cartStorage.forEach((habito) => {
-    habito.fechasRealizadas = habito.fechasRealizadas.map(
-      (fecha) => new Date(fecha)
-    );
-
-    habitos.push(habito);
-  });
-}
-
+// Inicializar
+cargarHabitos();
 renderHabitos(habitos);
 
-function marcarComoRealizado(habito) {
-  const hoy = new Date();
-  habito.fechasRealizadas.push(hoy);
-  localStorage.setItem("cardHabitos", JSON.stringify(habitos));
-}
-
-function eliminarHabito(habitoId) {
-  const index = habitos.findIndex((habito) => habito.id == habitoId);
-  if (index !== -1) {
-    habitos.splice(index, 1);
-    localStorage.setItem("cardHabitos", JSON.stringify(habitos));
-    renderHabitos(habitos);
-  }
-}
-
-async function editarHabito(habitoId) {
-  const habito = habitos.find((h) => h.id == habitoId);
-  if (habito) {
-    const { value: nuevoNombre } = await Swal.fire({
-      title: "Modificar Hábito",
-      input: "text",
-      inputLabel: "Nuevo nombre del hábito",
-      inputValue: habito.nombre,
-      showCancelButton: true,
-      confirmButtonText: "Guardar",
-      cancelButtonText: "Cancelar",
-      inputValidator: (value) => {
-        if (!value || value.trim() === "") {
-          return "Por favor ingresa un nombre para el hábito";
-        }
-      },
-    });
-
-    if (nuevoNombre && nuevoNombre.trim() !== "") {
-      habito.nombre = nuevoNombre.trim();
-      localStorage.setItem("cardHabitos", JSON.stringify(habitos));
-      renderHabitos(habitos);
-
-      Swal.fire({
-        title: "¡Actualizado!",
-        text: "El hábito ha sido modificado exitosamente",
-        icon: "success",
-        timer: 1500,
-        showConfirmButton: false,
-      });
-    }
-  }
-}
-
+// Renderizar todas las cards
 function renderHabitos(habitosArray) {
   habitosContainer.innerHTML = "";
-  habitosArray.forEach((habito) => {
+  habitosArray.forEach(function (habito) {
     const card = document.createElement("div");
     const listaFechas = document.createElement("ul");
+
     if (habito.fechasRealizadas.length > 0) {
-      habito.fechasRealizadas.forEach((fecha) => {
+      habito.fechasRealizadas.forEach(function (fecha) {
         const item = document.createElement("li");
-        item.innerHTML = `${new Date(fecha).toLocaleString("es-AR", {
-          dateStyle: "short",
-          timeStyle: "short",
-        })} <button class="habitoEditarFecha">✏️</button><button class="habitoEliminarFecha">🗑️</button>`;
+        item.innerHTML =
+          new Date(fecha).toLocaleString("es-AR", {
+            dateStyle: "short",
+            timeStyle: "short",
+          }) +
+          " <button class='habitoEditarFecha'>✏️</button>" +
+          "<button class='habitoEliminarFecha'>🗑️</button>";
         listaFechas.appendChild(item);
       });
     } else {
@@ -84,42 +32,81 @@ function renderHabitos(habitosArray) {
       listaFechas.appendChild(item);
     }
 
-    card.innerHTML = `<h3>${habito.nombre}</h3>
-                    <button class="habitoRegistrar" data-id="${habito.id}">Registrar avance</button>
-                    <button class="habitoEditar" data-id="${habito.id}">✏️</button>
-                    <button class="habitoEliminar" data-id="${habito.id}">🗑️</button>`;
+    card.innerHTML =
+      "<h3>" +
+      habito.nombre +
+      "</h3>" +
+      "<button class='habitoRegistrar' data-id='" +
+      habito.id +
+      "'>Registrar avance</button>" +
+      "<button class='habitoEditar' data-id='" +
+      habito.id +
+      "'>✏️</button>" +
+      "<button class='habitoEliminar' data-id='" +
+      habito.id +
+      "'>🗑️</button>";
+
     card.appendChild(listaFechas);
     habitosContainer.appendChild(card);
   });
+
   addToCardButton();
 }
+
+// Eventos para cada botón de las cards
 function addToCardButton() {
-  // Botones de registrar avance para todas las cards
   const registrarButtons = document.querySelectorAll(".habitoRegistrar");
-  registrarButtons.forEach((button) => {
-    button.onclick = (e) => {
+  registrarButtons.forEach(function (button) {
+    button.onclick = function (e) {
       const habitoId = e.currentTarget.getAttribute("data-id");
-      const habitoSeleccionado = habitos.find(
-        (habito) => habito.id == habitoId
-      );
+      const habitoSeleccionado = habitos.find(function (h) {
+        return h.id == habitoId;
+      });
       marcarComoRealizado(habitoSeleccionado);
       renderHabitos(habitos);
     };
   });
 
-  // Botones de editar para cards
   const editarButtons = document.querySelectorAll(".habitoEditar");
-  editarButtons.forEach((button) => {
-    button.onclick = (e) => {
+  editarButtons.forEach(function (button) {
+    button.onclick = async function (e) {
       const habitoId = e.currentTarget.getAttribute("data-id");
-      editarHabito(habitoId);
+      const habito = habitos.find(function (h) {
+        return h.id == habitoId;
+      });
+
+      const { value: nuevoNombre } = await Swal.fire({
+        title: "Modificar Hábito",
+        input: "text",
+        inputLabel: "Nuevo nombre del hábito",
+        inputValue: habito.nombre,
+        showCancelButton: true,
+        confirmButtonText: "Guardar",
+        cancelButtonText: "Cancelar",
+        inputValidator: function (value) {
+          if (!value || value.trim() === "") {
+            return "Por favor ingresa un nombre para el hábito";
+          }
+        },
+      });
+
+      if (nuevoNombre && nuevoNombre.trim() !== "") {
+        editarHabitoNombre(habitoId, nuevoNombre);
+        renderHabitos(habitos);
+        Swal.fire({
+          title: "¡Actualizado!",
+          text: "El hábito ha sido modificado exitosamente",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      }
     };
   });
 
-  // Botones de eliminar una cadrs
   const eliminarButtons = document.querySelectorAll(".habitoEliminar");
-  eliminarButtons.forEach((button) => {
-    button.onclick = (e) => {
+  eliminarButtons.forEach(function (button) {
+    button.onclick = function (e) {
       const habitoId = e.currentTarget.getAttribute("data-id");
       Swal.fire({
         title: "Eliminar hábito",
@@ -128,22 +115,26 @@ function addToCardButton() {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Si, borralo!",
-      }).then((result) => {
+        confirmButtonText: "Sí, borrarlo!",
+      }).then(function (result) {
         if (result.isConfirmed) {
           eliminarHabito(habitoId);
+          renderHabitos(habitos);
           Swal.fire({
             title: "Borrado!",
-            text: "Su hábito a sido eliminado",
+            text: "El hábito ha sido eliminado",
             icon: "success",
+            timer: 1500,
+            showConfirmButton: false,
           });
         }
       });
     };
   });
 }
-const agregarHabito = document.getElementById("nuevoHabito");
-agregarHabito.onclick = async () => {
+
+// Botón para crear nuevo hábito
+agregarHabitoBtn.onclick = async function () {
   const { value: nombreHabito } = await Swal.fire({
     title: "Nuevo Hábito",
     input: "text",
@@ -152,14 +143,13 @@ agregarHabito.onclick = async () => {
     showCancelButton: true,
     confirmButtonText: "Guardar",
     cancelButtonText: "Cancelar",
-    inputValidator: (value) => {
+    inputValidator: function (value) {
       if (!value || value.trim() === "") {
         return "Por favor ingresa un nombre para el hábito";
       }
-      // Verificar si el hábito ya existe --
-      const existe = habitos.some(
-        (habito) => habito.nombre.toLowerCase() === value.toLowerCase()
-      );
+      const existe = habitos.some(function (h) {
+        return h.nombre.toLowerCase() === value.toLowerCase();
+      });
       if (existe) {
         return "Ese hábito ya existe!";
       }
@@ -167,19 +157,11 @@ agregarHabito.onclick = async () => {
   });
 
   if (nombreHabito && nombreHabito.trim() !== "") {
-    const nuevoHabito = {
-      id: Date.now(),
-      nombre: nombreHabito.trim(),
-      fechasRealizadas: [],
-    };
-
-    habitos.push(nuevoHabito);
-    localStorage.setItem("cardHabitos", JSON.stringify(habitos));
+    agregarHabito(nombreHabito.trim());
     renderHabitos(habitos);
-
     Swal.fire({
       title: "¡Creado!",
-      text: `El hábito "${nombreHabito}" ha sido agregado exitosamente`,
+      text: 'El hábito "' + nombreHabito + '" ha sido agregado exitosamente',
       icon: "success",
       timer: 1500,
       showConfirmButton: false,
