@@ -1,5 +1,3 @@
-// ====== DATA LAYER ======
-
 let habitos = [];
 
 // Cargar hábitos del localStorage
@@ -33,10 +31,28 @@ function agregarHabito(nombre) {
 }
 
 // Registrar un avance
-function marcarComoRealizado(habito) {
-  const hoy = new Date();
-  habito.fechasRealizadas.push(hoy);
-  guardarHabitos();
+async function marcarComoRealizado(habito) {
+  const { value: fechaElegida } = await Swal.fire({
+    title: "Registrar Avance",
+    input: "datetime-local",
+    inputLabel: "Elegí la fecha y hora del avance",
+    showCancelButton: true,
+    confirmButtonText: "Guardar",
+    cancelButtonText: "Cancelar",
+  });
+
+  if (fechaElegida) {
+    const fecha = new Date(fechaElegida);
+    habito.fechasRealizadas.push(fecha);
+    guardarHabitos();
+    Swal.fire({
+      title: "¡Registrado!",
+      text: "El avance fue agregado correctamente.",
+      icon: "success",
+      timer: 1500,
+      showConfirmButton: false,
+    });
+  }
 }
 
 // Editar un hábito existente

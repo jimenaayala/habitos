@@ -1,5 +1,3 @@
-// ====== DOM & EVENTOS ======
-
 let habitosContainer = document.getElementById("habitos-container");
 let agregarHabitoBtn = document.getElementById("nuevoHabito");
 
@@ -53,7 +51,7 @@ function renderHabitos(habitosArray) {
   addToCardButton();
 }
 
-// Eventos para cada botón de las cards
+// Eventos para cada botón de lascards
 function addToCardButton() {
   const registrarButtons = document.querySelectorAll(".habitoRegistrar");
   registrarButtons.forEach(function (button) {
@@ -127,6 +125,81 @@ function addToCardButton() {
             timer: 1500,
             showConfirmButton: false,
           });
+        }
+      });
+    };
+  });
+  const editarFechaBtns = document.querySelectorAll(".habitoEditarFecha");
+  editarFechaBtns.forEach(function (btn) {
+    btn.onclick = async function (e) {
+      const li = e.target.closest("li");
+      const fechaTexto = li.textContent.split("✏️")[0].trim();
+      const habito = habitos.find((h) =>
+        h.fechasRealizadas.some(
+          (f) =>
+            new Date(f).toLocaleString("es-AR", {
+              dateStyle: "short",
+              timeStyle: "short",
+            }) === fechaTexto
+        )
+      );
+      const index = habito.fechasRealizadas.findIndex(
+        (f) =>
+          new Date(f).toLocaleString("es-AR", {
+            dateStyle: "short",
+            timeStyle: "short",
+          }) === fechaTexto
+      );
+
+      const { value: nuevaFecha } = await Swal.fire({
+        title: "Modificar fecha",
+        input: "datetime-local",
+        inputLabel: "Elegí la nueva fecha",
+        showCancelButton: true,
+      });
+
+      if (nuevaFecha) {
+        habito.fechasRealizadas[index] = new Date(nuevaFecha);
+        guardarHabitos();
+        renderHabitos(habitos);
+      }
+    };
+  });
+
+  const eliminarFechaBtns = document.querySelectorAll(".habitoEliminarFecha");
+  eliminarFechaBtns.forEach(function (btn) {
+    btn.onclick = function (e) {
+      const li = e.target.closest("li");
+      const fechaTexto = li.textContent.split("✏️")[0].trim();
+      const habito = habitos.find((h) =>
+        h.fechasRealizadas.some(
+          (f) =>
+            new Date(f).toLocaleString("es-AR", {
+              dateStyle: "short",
+              timeStyle: "short",
+            }) === fechaTexto
+        )
+      );
+      const index = habito.fechasRealizadas.findIndex(
+        (f) =>
+          new Date(f).toLocaleString("es-AR", {
+            dateStyle: "short",
+            timeStyle: "short",
+          }) === fechaTexto
+      );
+
+      Swal.fire({
+        title: "Eliminar fecha",
+        text: "¿Seguro que querés eliminar este avance?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          habito.fechasRealizadas.splice(index, 1);
+          guardarHabitos();
+          renderHabitos(habitos);
         }
       });
     };
