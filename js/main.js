@@ -12,6 +12,16 @@ function renderHabitos(habitosArray) {
     const card = document.createElement("div");
     const listaFechas = document.createElement("ul");
 
+    // 🔹 Calcular cantidad de avances del mes actual (una sola vez)
+    const ahora = new Date();
+    const mesActual = ahora.getMonth();
+    const anioActual = ahora.getFullYear();
+    const avancesMes = habito.fechasRealizadas.filter(function (fecha) {
+      const f = new Date(fecha);
+      return f.getMonth() === mesActual && f.getFullYear() === anioActual;
+    }).length;
+
+    // 🔹 Renderizar fechas
     if (habito.fechasRealizadas.length > 0) {
       habito.fechasRealizadas.forEach(function (fecha) {
         const item = document.createElement("li");
@@ -30,10 +40,14 @@ function renderHabitos(habitosArray) {
       listaFechas.appendChild(item);
     }
 
+    // 🔹 Armar la card del hábito
     card.innerHTML =
       "<h3>" +
       habito.nombre +
       "</h3>" +
+      "<p class='resumenMes'>Este mes avanzaste " +
+      avancesMes +
+      " veces este hábito</p>" +
       "<button class='habitoRegistrar' data-id='" +
       habito.id +
       "'>Registrar avance</button>" +
