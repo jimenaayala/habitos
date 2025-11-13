@@ -69,12 +69,12 @@ function renderHabitos(habitosArray) {
 function addToCardButton() {
   const registrarButtons = document.querySelectorAll(".habitoRegistrar");
   registrarButtons.forEach(function (button) {
-    button.onclick = function (e) {
+    button.onclick = async function (e) {
       const habitoId = e.currentTarget.getAttribute("data-id");
       const habitoSeleccionado = habitos.find(function (h) {
         return h.id == habitoId;
       });
-      marcarComoRealizado(habitoSeleccionado);
+      await marcarComoRealizado(habitoSeleccionado);
       renderHabitos(habitos);
     };
   });
