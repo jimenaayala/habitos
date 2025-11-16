@@ -330,3 +330,6 @@ body {
 .popup-body #guardarHabito:active {
   transform: translateY(0);
 }
+#verHabitos {
+  display: none;
+}

@@ -255,3 +255,38 @@ agregarHabitoBtn.onclick = async function () {
     });
   }
 };
+
+const btnSugeridos = document.getElementById("sugerirHabito");
+const btnVolver = document.getElementById("verHabitos");
+const titulo = document.querySelector(".header-section h2");
+const contenedor = document.getElementById("habitos-container");
+
+// Mostrar sugeridos
+btnSugeridos.addEventListener("click", function () {
+  titulo.textContent = "Hábitos sugeridos";
+  btnVolver.style.display = "inline-flex"; // 👉 aparece
+
+  fetch("./db/data.json")
+    .then((res) => res.json())
+    .then((data) => {
+      contenedor.innerHTML = "";
+
+      data.forEach(function (hab) {
+        const card = document.createElement("div");
+        card.className = "card-habito";
+        card.innerHTML = `
+          <h3>${hab.nombre}</h3>
+          <p><strong>Descripción:</strong> ${hab.descripcion}</p>
+          <p><strong>Beneficios:</strong> ${hab.beneficios}</p>
+        `;
+        contenedor.appendChild(card);
+      });
+    });
+});
+
+// Volver a la vista principal
+btnVolver.addEventListener("click", function () {
+  titulo.textContent = "Mis Hábitos";
+  btnVolver.style.display = "none"; // 👉 desaparece
+  renderHabitos(habitos);
+});

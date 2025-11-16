@@ -1,12 +1,77 @@
 [
   {
-    "id": 1,
-    "nombre": "Actividad fisica",
-    "fechasRealizadas": []
+    "nombre": "Leer 10 minutos al día",
+    "descripcion": "Mejora la concentración y el conocimiento.",
+    "beneficios": "Reduce el estrés, estimula el cerebro y aumenta la creatividad."
   },
   {
-    "id": 2,
-    "nombre": "Profesionalizar el trabajo actual",
-    "fechasRealizadas": []
+    "nombre": "Beber agua al levantarse",
+    "descripcion": "Ayuda a hidratar el cuerpo después del descanso.",
+    "beneficios": "Activa el metabolismo y mejora la digestión."
+  },
+  {
+    "nombre": "Caminar 30 minutos",
+    "descripcion": "Actividad física ligera para mantenerse en forma.",
+    "beneficios": "Mejora la circulación y el estado de ánimo."
+  },
+  {
+    "nombre": "Meditar 5 minutos",
+    "descripcion": "Pausa breve para calmar la mente.",
+    "beneficios": "Reduce la ansiedad y mejora el enfoque."
+  },
+  {
+    "nombre": "Planificar el día",
+    "descripcion": "Organizar las tareas antes de empezar.",
+    "beneficios": "Aumenta la productividad y disminuye la sensación de caos."
+  },
+  {
+    "nombre": "Estiramiento matinal",
+    "descripcion": "Mover el cuerpo suavemente al despertar.",
+    "beneficios": "Mejora la flexibilidad y reduce tensiones."
+  },
+  {
+    "nombre": "Comer una fruta diaria",
+    "descripcion": "Aporte simple de vitaminas naturales.",
+    "beneficios": "Refuerza el sistema inmune y mejora la energía."
+  },
+  {
+    "nombre": "Limitar el uso del teléfono antes de dormir",
+    "descripcion": "Evitar pantallas para descansar mejor.",
+    "beneficios": "Mejora la calidad del sueño y reduce la fatiga visual."
+  },
+  {
+    "nombre": "Respirar profundo 1 minuto",
+    "descripcion": "Ejercicio breve de respiración consciente.",
+    "beneficios": "Disminuye el estrés y mejora la claridad mental."
+  },
+  {
+    "nombre": "Tomar pausas activas",
+    "descripcion": "Microdescansos durante el trabajo.",
+    "beneficios": "Previene dolores musculares y mejora el rendimiento."
+  },
+  {
+    "nombre": "Escribir 3 cosas por las que estás agradecido",
+    "descripcion": "Pequeño ejercicio de reflexión diaria.",
+    "beneficios": "Mejora el ánimo y refuerza la perspectiva positiva."
+  },
+  {
+    "nombre": "Preparar la ropa del día siguiente",
+    "descripcion": "Organizar lo necesario antes de dormir.",
+    "beneficios": "Reduce el estrés matinal y ahorra tiempo."
+  },
+  {
+    "nombre": "Tomar un descanso sin pantallas",
+    "descripcion": "Un rato lejos de dispositivos electrónicos.",
+    "beneficios": "Descansa la vista y baja la sobrecarga mental."
+  },
+  {
+    "nombre": "Mantener el escritorio ordenado",
+    "descripcion": "Espacio de trabajo limpio y funcional.",
+    "beneficios": "Aumenta el enfoque y facilita empezar cada tarea."
+  },
+  {
+    "nombre": "Salir a tomar sol 10 minutos",
+    "descripcion": "Exponerse brevemente a la luz natural.",
+    "beneficios": "Mejora la vitamina D y regula el estado de ánimo."
   }
 ]
