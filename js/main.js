@@ -1,18 +1,17 @@
 let habitosContainer = document.getElementById("habitos-container");
 let agregarHabitoBtn = document.getElementById("nuevoHabito");
 
-// Inicializar
 cargarHabitos();
 renderHabitos(habitos);
 
-// Renderizar todas las cards
+// Renderizar todas - cards
 function renderHabitos(habitosArray) {
   habitosContainer.innerHTML = "";
   habitosArray.forEach(function (habito) {
     const card = document.createElement("div");
     const listaFechas = document.createElement("ul");
 
-    // 🔹 Calcular cantidad de avances del mes actual (una sola vez)
+    // Calcular cantidad de avances del mes actual
     const ahora = new Date();
     const mesActual = ahora.getMonth();
     const anioActual = ahora.getFullYear();
@@ -21,7 +20,7 @@ function renderHabitos(habitosArray) {
       return f.getMonth() === mesActual && f.getFullYear() === anioActual;
     }).length;
 
-    // 🔹 Renderizar fechas
+    // Renderizar fechas de c/hábito
     if (habito.fechasRealizadas.length > 0) {
       habito.fechasRealizadas.forEach(function (fecha) {
         const item = document.createElement("li");
@@ -40,7 +39,7 @@ function renderHabitos(habitosArray) {
       listaFechas.appendChild(item);
     }
 
-    // 🔹 Armar la card del hábito
+    // Construir la card hábito
     card.innerHTML =
       "<h3>" +
       habito.nombre +
@@ -220,7 +219,7 @@ function addToCardButton() {
   });
 }
 
-// Botón para crear nuevo hábito
+// Botón crea hábito nuevo
 agregarHabitoBtn.onclick = async function () {
   const { value: nombreHabito } = await Swal.fire({
     title: "Nuevo Hábito",
@@ -261,7 +260,7 @@ const btnVolver = document.getElementById("verHabitos");
 const titulo = document.querySelector(".header-section h2");
 const contenedor = document.getElementById("habitos-container");
 
-// Mostrar sugeridos
+// Mostrar hab. sugeridos
 btnSugeridos.addEventListener("click", function () {
   titulo.textContent = "Hábitos sugeridos";
   btnVolver.style.display = "inline-flex"; // 👉 aparece
@@ -284,7 +283,7 @@ btnSugeridos.addEventListener("click", function () {
     });
 });
 
-// Volver a la vista principal
+// para volver a la principal
 btnVolver.addEventListener("click", function () {
   titulo.textContent = "Mis Hábitos";
   btnVolver.style.display = "none"; // 👉 desaparece

@@ -73,5 +73,35 @@
     "nombre": "Salir a tomar sol 10 minutos",
     "descripcion": "Exponerse brevemente a la luz natural.",
     "beneficios": "Mejora la vitamina D y regula el estado de ánimo."
+  },
+  {
+    "nombre": "Escuchar un podcast inspirador",
+    "descripcion": "Contenido breve que aporta ideas nuevas.",
+    "beneficios": "Estimula la creatividad y el aprendizaje continuo."
+  },
+  {
+    "nombre": "Hacer una pausa para hidratarse",
+    "descripcion": "Recordar beber agua durante el día.",
+    "beneficios": "Mejora la energía y mantiene el cuerpo funcionando bien."
+  },
+  {
+    "nombre": "Organizar 5 minutos un espacio",
+    "descripcion": "Pequeña acción diaria de orden.",
+    "beneficios": "Reduce el desorden acumulado y genera sensación de control."
+  },
+  {
+    "nombre": "Revisar metas semanales",
+    "descripcion": "Chequeo rápido del rumbo.",
+    "beneficios": "Mantiene el foco y facilita tomar decisiones."
+  },
+  {
+    "nombre": "Evitar multitarea",
+    "descripcion": "Completar una cosa antes de pasar a otra.",
+    "beneficios": "Reduce errores y aumenta la eficiencia."
+  },
+  {
+    "nombre": "Cenar liviano",
+    "descripcion": "Elegir comidas simples y fáciles de digerir.",
+    "beneficios": "Mejora el descanso y evita malestar nocturno."
   }
 ]

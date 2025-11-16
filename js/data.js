@@ -1,6 +1,6 @@
 let habitos = [];
 
-// Cargar hábitos del localStorage
+// Cargar hábitos - localStorage
 function cargarHabitos() {
   let guardados = localStorage.getItem("cardHabitos");
   if (guardados) {
@@ -14,7 +14,7 @@ function cargarHabitos() {
   }
 }
 
-// Guardar hábitos en localStorage
+// Guardar - localStorage
 function guardarHabitos() {
   localStorage.setItem("cardHabitos", JSON.stringify(habitos));
 }
