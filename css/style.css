@@ -333,3 +333,9 @@ body {
 #verHabitos {
   display: none;
 }
+.botones-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; /* separa los botones */
+  margin: 20px 0;
+}
