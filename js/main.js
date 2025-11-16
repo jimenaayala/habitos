@@ -11,7 +11,7 @@ function renderHabitos(habitosArray) {
     const card = document.createElement("div");
     const listaFechas = document.createElement("ul");
 
-    // Calcular cantidad de avances del mes actual
+    // Calcular cantidad de avances del mes actual, controlar avances
     const ahora = new Date();
     const mesActual = ahora.getMonth();
     const anioActual = ahora.getFullYear();
@@ -20,7 +20,7 @@ function renderHabitos(habitosArray) {
       return f.getMonth() === mesActual && f.getFullYear() === anioActual;
     }).length;
 
-    // Renderizar fechas de c/hábito
+    // Renderizar fechas dentro de los hábitos
     if (habito.fechasRealizadas.length > 0) {
       habito.fechasRealizadas.forEach(function (fecha) {
         const item = document.createElement("li");

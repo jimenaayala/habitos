@@ -12,7 +12,6 @@ body {
   margin: 0;
 }
 
-/* Hero Section */
 .hero {
   background: rgba(255, 255, 255, 0.95);
   padding: 40px 20px;
@@ -36,14 +35,12 @@ body {
   line-height: 1.6;
 }
 
-/* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px 40px;
 }
 
-/* Header Section with Title and Button */
 .header-section {
   display: flex;
   justify-content: space-between;
@@ -60,7 +57,6 @@ body {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Modern Add Button */
 .btn-agregar {
   display: flex;
   align-items: center;
@@ -103,7 +99,6 @@ body {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Habits Container */
 #habitos-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -265,7 +260,7 @@ body {
   }
 }
 
-/* Estilos para el Popup de Agregar Hábito */
+/* Estilos para la ventanita de habitos */
 .popup-body {
   display: flex;
   justify-content: center;
