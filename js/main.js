@@ -260,7 +260,7 @@ const btnVolver = document.getElementById("verHabitos");
 const titulo = document.querySelector(".header-section h2");
 const contenedor = document.getElementById("habitos-container");
 
-// Mostrar hab. sugeridos
+// Mostrarles hab. sugeridos y asi usar el json
 btnSugeridos.addEventListener("click", function () {
   titulo.textContent = "Hábitos sugeridos";
   btnVolver.style.display = "inline-flex"; // 👉 aparece
@@ -274,16 +274,51 @@ btnSugeridos.addEventListener("click", function () {
         const card = document.createElement("div");
         card.className = "card-habito";
         card.innerHTML = `
-          <h3>${hab.nombre}</h3>
-          <p><strong>Descripción:</strong> ${hab.descripcion}</p>
-          <p><strong>Beneficios:</strong> ${hab.beneficios}</p>
+        <h3>${hab.nombre}</h3>
+        <p><strong>Descripción:</strong> ${hab.descripcion}</p>
+        <p><strong>Beneficios:</strong> ${hab.beneficios}</p>
+        <button class="btn-agregar btn-agregar-sugerido"  data-nombre="${hab.nombre}">
+        Agregar a mis hábitos
+        </button>
         `;
         contenedor.appendChild(card);
+      });
+      const botonesAgregar = document.querySelectorAll(".btn-agregar-sugerido");
+
+      botonesAgregar.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          const nombre = btn.getAttribute("data-nombre");
+
+          // Controlamos el tema  de duplicados
+          const existe = habitos.some(function (h) {
+            return h.nombre.toLowerCase() === nombre.toLowerCase();
+          });
+
+          if (existe) {
+            Swal.fire({
+              icon: "info",
+              title: "Ya existe",
+              text: 'El hábito "' + nombre + '" ya está en tu lista.',
+            });
+            return;
+          }
+
+          // Crear unháb.
+          agregarHabito(nombre);
+
+          Swal.fire({
+            icon: "success",
+            title: "Agregado",
+            text: 'El hábito "' + nombre + '" fue añadido a tu lista.',
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        });
       });
     });
 });
 
-// para volver a la principal
+// para volver a la principal luego de ver sugeridos
 btnVolver.addEventListener("click", function () {
   titulo.textContent = "Mis Hábitos";
   btnVolver.style.display = "none"; // 👉 desaparece

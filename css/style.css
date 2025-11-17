@@ -202,7 +202,7 @@ body {
   border: none;
   outline: none;
 }
-/* Lista de fechas */
+
 #habitos-container ul {
   list-style-type: none;
   padding: 0;
@@ -236,7 +236,6 @@ body {
   word-break: break-word;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 1.8rem;
@@ -260,7 +259,6 @@ body {
   }
 }
 
-/* Estilos para la ventanita de habitos */
 .popup-body {
   display: flex;
   justify-content: center;

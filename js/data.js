@@ -1,6 +1,6 @@
 let habitos = [];
 
-// Cargar hábitos - localStorage
+// Aca cargamos hábitos con localStorage simil bd como dijo el profe
 function cargarHabitos() {
   let guardados = localStorage.getItem("cardHabitos");
   if (guardados) {
@@ -30,7 +30,7 @@ function agregarHabito(nombre) {
   guardarHabitos();
 }
 
-// Registrar un avance
+// Registrar un avance, que luego contará en numero de veces mensuales
 async function marcarComoRealizado(habito) {
   const { value: fechaElegida } = await Swal.fire({
     title: "Registrar Avance",
@@ -55,7 +55,7 @@ async function marcarComoRealizado(habito) {
   }
 }
 
-// Editar un hábito existente
+// Editar un hábito que ya está
 function editarHabitoNombre(habitoId, nuevoNombre) {
   const habito = habitos.find(function (h) {
     return h.id == habitoId;
@@ -66,7 +66,7 @@ function editarHabitoNombre(habitoId, nuevoNombre) {
   }
 }
 
-// Eliminar hábito
+// Eliminar háb.
 function eliminarHabito(habitoId) {
   const index = habitos.findIndex(function (h) {
     return h.id == habitoId;
